@@ -139,11 +139,11 @@
 }
 
 .img-bg {
-  background-image: url('/dwarf-mine.jpg'); /* Chemin absolu vers l'image */
+  background-image: url('/map.png'); /* Chemin absolu vers l'image */
   background-size: cover; /* Redimensionne l'image pour couvrir le canvas */
-  background-position: center center; /* Centre l'image horizontalement et verticalement */
+  background-size: 100%;
   background-repeat: no-repeat; /* Empêche la répétition de l'image */
-  background-attachment: fixed; /* Fixe l'image pour qu'elle ne se déplace pas avec le défilement */
+
 }
 
 /* .img-bg {
@@ -520,3 +520,4 @@ background: radial-gradient(circle, rgba(43,43,43,1) 92%, rgba(147,51,234,1) 100
   text-align: center; /* Centre le texte à l'intérieur du talent */
   font-size: 0.9rem; /* Réduit la taille de police */
 }
+

@@ -33,17 +33,16 @@ const Navbar = () => {
   return (
     <header className="justify-center items-center">
       <nav className="warcraft-nav flex items-center gap-10 p-body-pageContent justify-center relative">
-        <Link href="/inventory" className="warcraft-link font-bold text-lg" prefetch={false}>
-          Inventaire
-        </Link>
-        <Link href="/village" className="warcraft-link font-bold text-lg" prefetch={false}>
-          Village
-        </Link>
+      <div className="flex flex-row items-center">
+        <img src="/arcanum.png" width={40} height={40}/>
+        {/* <div className="text-lg font-semibold"> {state.playerStats.resource} </div> */}
+        </div>
+        <div className="flex flex-row items-center">
+        {/* <div className="text-lg font-semibold"> {state.playerStats.passiveResource}  </div> */}
+        <img src="/arcanum.png" width={40} height={40}/>
+        <div className="text-lg font-semibold"> /s </div>
+        </div>
         <div className="flex flex-row gap-2 cursor-pointer"  onClick={handleButtonClick}>
-          <div className="flex flex-row items-center gap-2">
-            <img src="/arcanum.png" width={40} height={40} alt="Resource Icon" />
-            {/* <div className="text-lg font-semibold">{state.playerStats.resource}</div> */}
-          </div>
           <div className="hexagon">
             <img src="/GameLogo.png" alt="Portrait" className="hexagon-img" />
           </div>
@@ -51,12 +50,17 @@ const Navbar = () => {
             {/* <div className="text-lg font-semibold">Niveau {state.playerStats.level} - {state.playerStats.apogeeLevel}</div> */}
           </div>
         </div>
-        <Link href="/shop" className="warcraft-link font-bold text-lg" prefetch={false}>
-          Shop
-        </Link>
-        <Link href="#" className="warcraft-link font-bold text-lg" prefetch={false}>
-          Scoreboard
-        </Link>
+        <div className="flex flex-row items-center">
+        {/* <div className="text-lg font-semibold"> total : {state.playerStats.totalResource}  </div> */}
+        <img src="/arcanum.png" width={40} height={40}/>
+        <div className="text-lg font-semibold"> </div>
+        </div>
+
+        <div className="flex flex-row items-center">
+        {/* <div className="text-lg font-semibold"> total : {state.playerStats.totalResource}  </div> */}
+ 
+        <div className="text-lg font-semibold"> </div>
+        </div>
       </nav>
     </header>
   );
