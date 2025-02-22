@@ -1,21 +1,522 @@
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 210 100% 6%;
+    --foreground: 180 100% 90%;
+    --primary: 200 100% 28%;
+    --primary-foreground: 180 100% 90%;
+    --secondary: 203 23% 30%;
+    --secondary-foreground: 180 100% 90%;
+    --accent: 198 70% 50%;
+    --accent-foreground: 185 10% 13%;
+    --destructive: 0 98% 44%;
+    --destructive-foreground: 0 0% 100%;
+    --muted: 200 50% 30%;
+    --muted-foreground: 180 100% 90%;
+    --card: 210 100% 12%;
+    --card-foreground: 180 100% 90%;
+    --popover: 210 100% 15%;
+    --popover-foreground: 180 100% 90%;
+    --border: 210 50% 40%;
+    --input: 210 50% 40%;
+    --ring: 180 100% 90%;
+    --radius: 0rem;
   }
 }
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+
+
+.warcraft-nav {
+  font-family: 'Uncial Antiqua', serif;
+  background-color: #111827;; /* Dark, rich brown */
+  padding: 10px 20px;
+  border: 2px solid #8e2de2; /* Use a deep purple or gold color for borders */
+  border-radius: 10px;
+}
+
+.warcraft-link {
+  color: #ffcc00; /* Gold color for links */
+  text-shadow: 2px 2px 5px #000; /* Shadow effect for text */
+  font-size: 1.2rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.warcraft-link:hover {
+  color: #fff;
+  text-shadow: 3px 3px 7px #ffcc00;
+}
+
+.warcraft-avatar {
+  position: relative;
+}
+
+.warcraft-avatar img {
+  border-radius: 50%;
+  border: 2px solid #ffcc00; /* Gold border */
+}
+
+.warcraft-badge {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2b1b0e;
+  border: 2px solid #8e2de2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warcraft-badge img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.warcraft-badge-arrow {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #8e2de2;
+}
+
+.p-body-pageContent {
+  border: none; /* Supprime toutes les bordures par défaut */
+  border-bottom: 10px solid transparent; /* Applique une bordure inférieure transparente */
+  border-image-source: url(../public/metal-border2.png); /* Source de l'image de bordure */
+  border-image-slice: 19 57 38 80; /* Coupe uniquement la partie inférieure de l'image */
+  border-image-width: 0 0 10px 0; /* Applique la largeur de la bordure inférieure */
+  border-image-repeat: repeat; /* Répète l'image le long de la bordure inférieure */
+  min-height: 100px;
+  position: relative;
+}
+
+.p-body-pageContent::before {
+  position: absolute;
+  content: '';
+  bottom: -10px; /* Positionne les coins légèrement en dehors du conteneur */
+  left: 0;
+  right: 0;
+  height: 10px; /* Hauteur des coins */
+  pointer-events: none;
+  background: url(../public/metal-border2-bottom-left.png) no-repeat bottom left, 
+              url(../public/metal-border2-bottom-right.png) no-repeat bottom right;
+  background-size: 196px 10px, 155px 10px; /* Ajuste la taille des coins */
+}
+
+.gap-10 {
+  gap: 8rem;
+}
+
+.img-bg {
+  background-image: url('/dwarf-mine.jpg'); /* Chemin absolu vers l'image */
+  background-size: cover; /* Redimensionne l'image pour couvrir le canvas */
+  background-position: center center; /* Centre l'image horizontalement et verticalement */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  background-attachment: fixed; /* Fixe l'image pour qu'elle ne se déplace pas avec le défilement */
+}
+
+/* .img-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+} */
+
+.relative .absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.relative .rounded-full {
+  border-radius: 50%;
+}
+
+.relative .w-full {
+  width: 100%;
+}
+
+.relative .h-full {
+  height: 100%;
+}
+
+.relative .object-cover {
+  object-fit: cover;
+}
+
+
+.xp-bar-container {
+  position: relative;
+  width: 412px;
+  height: 412px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dwarf {
+  background-image: url('/miner_portrait.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.xp-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 0; /* Ensure the XP bar is below the button */
+}
+
+.capacity-button {
+  z-index: 1;
+}
+
+.reload-bar-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reload-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure the XP bar is below the button */
+  transition: width 2s;
+}
+
+
+
+
+.hexagon {
+
+  height: 75px; /* Adjust as needed */
+  margin: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor:pointer;
+}
+
+
+.hexagon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(
+    25% 6.7%, 
+    75% 6.7%, 
+    100% 50%, 
+    75% 93.3%, 
+    25% 93.3%, 
+    0% 50%
+  );
+}
+
+
+.p-body-fantasyCard {
+  border: 19px solid transparent;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+border-image: url(../public/metal-border2.png) 38 repeat;
+position: relative;
+border-radius: 3rem;
+}
+
+.p-body-fantasyCard::before {
+  position: absolute;
+  content: '';
+  top: calc(-19.5px);
+  left: calc(-20px);
+  bottom: calc(-19px);
+  right: calc(-18px);
+  pointer-events: none;
+  background: url(../public/metal-border2-bottom-left.png) no-repeat bottom left, 
+  url(../public/metal-border2-bottom-right.png) no-repeat bottom right,
+  url(../public/metal-border2-top-right.png) no-repeat top right,
+  url(../public/metal-border2-top-left.png) no-repeat top left;
+}
+
+.large-borders::before {
+  background-size: 104px auto,112px auto,196px auto,155px auto;
+}
+
+.small-borders::before {
+  background-size: 10px auto,10px auto,10px auto,10px auto;
+}
+
+.wooden-background {
+    background-image: url('../public/stone_texture.webp');
+
+
+    background-repeat: repeat; /* Tiling enabled */
+    background-size: 100px 100px; /* Adjust size to scale the texture */
+    background-position: top left;
+    color: #fff;
+    /* font-family: 'Fantasy Font', cursive; */
+}
+
+
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #0d0d0d;
+}
+
+/* Container and Main Section */
+.main {
+  background: url('/path-to-your-8bit-bg.png') repeat;
+  background-size: cover;
+  padding: 16px;
+  border: 4px solid #3b3b3b;
+  box-shadow: 0px 0px 0px 2px #7a7a7a;
+}
+
+/* Headers */
+header h1 {
+  color: #f8f8f8;
+  font-size: 20px;
+  text-shadow: 2px 2px 0px #2b2b2b;
+}
+
+section h2 {
+  font-size: 18px;
+  /* color: #ffd700; */
+  text-shadow: 1px 1px 0px #7a7a7a;
+}
+
+/* Item Slots */
+.menu-bar-selected {
+  border: 4px solid;
+  border-color: #7a7a7a;
+  box-shadow: 0px 0px 0px 2px  #ffc400;
+  background-color: #1a1a1a;
+}
+
+.menu-bar {
+  border: 4px solid;
+  border-color: #3b3b3b;
+  box-shadow: 0px 0px 0px 2px #7a7a7a;
+  background-color: #1a1a1a;
+}
+
+/* .menu-bar:hover {
+  background-color: #3b3b3b;
+} */
+
+/* Images */
+.placeholder_pictures {
+  image-rendering: pixelated;
+  border: 2px solid #7a7a7a;
+}
+
+.placeholder_pictures:hover {
+  background-color: #7a7a7a;
+}
+
+/* Buttons */
+button {
+  background-color: #2b2b2b;
+  color: #ffd700;
+  border: 4px solid #7a7a7a;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+button:hover {
+  background-color: #3b3b3b;
+  border-color: #ffd700;
+}
+
+
+.grid-cols-8 {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+
+.legendary-bg {
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(245,158,11,1) 100%);
+}
+
+.epic-bg {
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(168,85,247,1) 100%); 
+}
+
+.rare-bg {
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(59,130,246,1) 100%); 
+}
+
+.uncommon-bg {
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(132,204,22,1) 100%); 
+}
+
+.inventory-grid {
+  grid-template-columns: repeat(12, 64px);
+}
+
+.legendary-item-card-bg {
+  background: rgb(43,43,43);
+  background: radial-gradient(circle, rgba(43,43,43,1) 92%, rgba(217,119,6,1) 100%);
+}
+
+.uncommon-item-card-bg {
+  background: rgb(43,43,43);
+  background: radial-gradient(circle, rgba(43,43,43,1) 92%, rgba(101,163,13,1) 100%);
+}
+
+.rare-item-card-bg {
+  background: rgb(43,43,43);
+  background: radial-gradient(circle, rgba(43,43,43,1) 92%, rgba(37,99,235,1) 100%);
+}
+
+.epic-item-card-bg {
+  background: rgb(43,43,43);
+background: radial-gradient(circle, rgba(43,43,43,1) 92%, rgba(147,51,234,1) 100%);
+}
+
+/* Position the modal to the right of the item */
+.top-0 {
+  top: 0;
+}
+
+.left-full {
+  left: 58%;
+}
+
+.item-modal {
+  position: absolute;
+  z-index: 50;
+}
+
+.prestige-tree {
+  position: relative;
+  width: 60vh;
+  height: 60vh;
+}
+
+.lines-container {
+  position: absolute;
+  background: blue;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.prestige-node {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.talent-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement entre les niveaux */
+  padding: 20px;
+  background-color: #1a202c; /* Couleur de fond pour bg-gray-900 */
+}
+
+.way {
+  display: flex;
+  flex-direction: column;
+}
+
+.way-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre les talents */
+  justify-content: center; /* Centrage horizontal des talents */
+}
+
+.talent-container {
+  position: relative; /* Pour positionner la ligne relative au talent */
+  display: flex;
+  align-items: center; /* Aligner verticalement les talents avec les lignes */
+}
+
+.line {
+  position: absolute;
+  height: 2px; /* Épaisseur de la ligne */
+  background-color: black; /* Couleur de la ligne */
+  width: 100%; /* Largeur de la ligne */
+  top: 50%; /* Positionnement vertical */
+  left: 0; /* Aligner la ligne au début du conteneur */
+  z-index: -1; /* Placer la ligne derrière le talent */
+  transform: translateY(-50%); /* Centrer la ligne par rapport au talent */
+}
+
+.talent {
+
+  padding: 8px; /* Réduit l'espace intérieur */
+  border-radius: 4px;
+  max-width: 500px; /* Limite la largeur maximale des talents */
+  text-align: center; /* Centre le texte à l'intérieur du talent */
+  font-size: 0.9rem; /* Réduit la taille de police */
 }
