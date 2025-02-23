@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-// import usePlayerStatsUpdater from "@/hooks/PlayerResourceHook";
-// import usePlayerLevelUpdater from "@/hooks/PlayerLevelHook";
+import usePlayerStatsUpdater from "@/hooks/PlayerResourceHook";
+import usePlayerLevelUpdater from "@/hooks/PlayerLevelHook";
 // import { useVillagerResources } from "@/hooks/FarmerResourceHook";
 // import { useItemsResources } from "@/hooks/ItemHook";
-// import { usePlayer } from "@/context/PlayerContext";
+import { usePlayer } from "@/context/PlayerContext";
 import { memo, useCallback } from "react";
 // import useShop from "@/hooks/ShopHook";
-// import useSkillActivation from "@/hooks/PlayerCapacityHook";
+
 // import usePlayerStatsEffects from "@/hooks/PlayerStatsHook";
 // import { useServantResources } from "@/hooks/ServantResourceHook";
 

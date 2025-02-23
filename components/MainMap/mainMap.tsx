@@ -4,11 +4,7 @@ import { useState } from "react";
 import { TextureLoader } from "three";
 import { VillageCard } from "../villageCard";
 
-function Map() {
-    const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
-
-
-    
+function Map() {    
     const mapTexture = useLoader(TextureLoader, "/map.png");
     console.log("Texture chargée :", mapTexture); // Debug
     return (

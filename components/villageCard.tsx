@@ -8,25 +8,11 @@ import { useRouter } from "next/navigation";
 export function VillageCard() {
 //   const { state ,dispatch } = usePlayer();
   const router = useRouter();
-  const handleOnTalentClickk = useCallback(() => {
-    router.push("/statupgrade");
+
+  const handleOnCityManageClick = useCallback(() => {
+    router.push("/City");
   }, [router]);
 
-  const handleOnInventoryClick = useCallback(() => {
-    router.push("/inventory");
-  }, [router]);
-
-  const handleOnVillageClick = useCallback(() => {
-    router.push("/village");
-  }, [router]);
-
-  const handleOnShopClick = useCallback(() => {
-    router.push("/shop");
-  }, [router]);
-
-  const handleOnApogeeClick = useCallback(() => {
-    router.push("/apogee");
-  }, [router]);
 
   return (
   
@@ -44,7 +30,7 @@ export function VillageCard() {
       <div className="p-2 bg-gray-900 rounded-b-lg">
         <div className="flex justify-between text-white">
         <button
-                className="px-4 py-2 rounded-lg border border-secondary" onClick={() => handleOnInventoryClick()}
+                className="px-4 py-2 rounded-lg border border-secondary" onClick={() => handleOnCityManageClick()}
               >
                 Gérer le village
               </button>
