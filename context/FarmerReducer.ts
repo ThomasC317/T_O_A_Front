@@ -170,6 +170,7 @@ export type FarmerAction =
         };
       }
       case FarmerActionTypes.SET_FARMER_LEVEL: {
+        console.log("level up !!!!")
         const { id, level } = action.payload;
         return {
           ...state,

@@ -29,7 +29,7 @@ function usePlayerStatsUpdater() {
       const xpOnInterval =
         passiveValue + passiveValue * state.playerStats.xpRenderBonus;
       dispatch(setXp(xpOnInterval));
-    }, 10000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [state.playerStats.passiveResource, dispatch]);

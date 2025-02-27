@@ -198,6 +198,29 @@ interface SetXpAction {
           ...state,
           passiveResource: action.payload,
         };
+        case PlayerActionTypes.SET_PLAYER_STATS: {
+          console.log(action.payload)
+          const { stats, operation } = action.payload;
+          return {
+            ...state,
+            stats: Object.keys(stats).reduce(
+              (updatedStats, key) => {
+                const statValue = stats[key];
+                console.log(statValue)
+                if (operation === "add") {
+                  // Add the stat value to the existing stat
+                  updatedStats[key] = (updatedStats[key] || 0) + statValue;
+                } else if (operation === "remove") {
+                  // Subtract the stat value from the existing stat
+                  updatedStats[key] = (updatedStats[key] || 0) - statValue;
+                }
+    
+                return updatedStats;
+              },
+              { ...state.stats }
+            ),
+          };
+        }
       case PlayerActionTypes.SET_XP_FOR_LEVEL_UP:
         return {
           ...state,

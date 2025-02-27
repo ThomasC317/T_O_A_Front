@@ -5,8 +5,8 @@ import {
   getQualityColor,
   getTextColor,
   getTranslatedQuality,
-} from "@/utils/gameColorsUtil";
-import { ItemCost } from "./item-cost";
+} from "@/utils/GameQualities";
+import { ItemCost } from "./itemCost";
 import { usePlayer } from "@/context/PlayerContext";
 
 export default function GameCard({
