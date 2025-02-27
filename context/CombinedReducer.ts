@@ -1,15 +1,15 @@
 import { Reducer } from 'react';
 import playerReducer, { PlayerStats } from './PlayerReducer';
 import farmerReducer , { FarmerStats } from './FarmerReducer';
-// import itemReducer, { GameItem, ItemState } from './ItemReducer';
-// import shopReducer, { ShopState } from './ShopReducer';
+import itemReducer, { GameItem, ItemState } from './ItemReducer';
+import shopReducer, { ShopState } from './ShopReducer';
 // import talentReducer, { TalentState } from './TalentReducer';
 
 export interface CombinedState {
   playerStats: PlayerStats;
   farmerStats: FarmerStats;
-//   gameItem: ItemState;
-//   shopState:ShopState;
+  gameItem: ItemState;
+  shopState:ShopState;
 //   talentState: TalentState;
 }
 
@@ -25,7 +25,7 @@ const combineReducers = (slices: { [key: string]: Reducer<any, any> }): Reducer<
 export const rootReducer = combineReducers({
   playerStats: playerReducer,
   farmerStats: farmerReducer,
-//   gameItem: itemReducer,
-//   shopState:shopReducer,
+  gameItem: itemReducer,
+  shopState:shopReducer,
 //   talentState: talentReducer
 });

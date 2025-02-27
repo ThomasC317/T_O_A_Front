@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import usePlayerStatsUpdater from "@/hooks/PlayerResourceHook";
 import usePlayerLevelUpdater from "@/hooks/PlayerLevelHook";
 import { useVillagerResources } from "@/hooks/FarmerResourceHook";
-// import { useItemsResources } from "@/hooks/ItemHook";
+import { useItemsResources } from "@/hooks/ItemHook";
 import { usePlayer } from "@/context/PlayerContext";
 import { memo, useCallback, useEffect } from "react";
-// import useShop from "@/hooks/ShopHook";
+import useShop from "@/hooks/ShopHook";
 
 import usePlayerStatsEffects from "@/hooks/PlayerStatsHook";
 // import { useServantResources } from "@/hooks/ServantResourceHook";
@@ -19,8 +19,8 @@ usePlayerStatsUpdater();
 usePlayerStatsEffects();
  useVillagerResources();
 //   useServantResources();
-//   useItemsResources();
-//   useShop();
+useItemsResources();
+useShop();
 //   useSkillActivation(); // Hook for the specific skill
   const router = useRouter();
   const { state } = usePlayer();

@@ -99,7 +99,7 @@ const FarmersManagement = () => {
 
         {/* Equipped Farmers Grid */}
         <div className="mt-4">
-          <h2>Equipped Farmers:</h2>
+          <h2>Villageois actifs:</h2>
           <div className="grid grid-cols-4 gap-2 mt-2">
             {farmers
               .filter((item) => item.isActive)
