@@ -232,9 +232,10 @@ const useSetFarmerIsActive = () => {
 
   const setFarmerIsActiveHandler = useCallback(
     (farmer: Farmer) => {
-        let resource = 0;
-        resource = farmer.resourcePerSecond * farmer.level;
-        dispatch(setPlayerStats({ intelligence: resource }, "add"));
+        if(!farmer.isActive)
+          dispatch(setPlayerStats({ intelligence: farmer.resourcePerSecond }, "add"));
+        else 
+          dispatch(setPlayerStats({ intelligence: farmer.resourcePerSecond }, "remove"));
         dispatch(setFarmerIsActive(farmer.id,!farmer.isActive))
     },
     [dispatch]
