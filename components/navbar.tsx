@@ -10,7 +10,7 @@ import { memo, useCallback, useEffect } from "react";
 import useShop from "@/hooks/ShopHook";
 
 import usePlayerStatsEffects from "@/hooks/PlayerStatsHook";
-// import { useServantResources } from "@/hooks/ServantResourceHook";
+import { useServantResources } from "@/hooks/ServantResourceHook";
 
 
 const Navbar = () => {
@@ -18,10 +18,10 @@ usePlayerStatsUpdater();
 //   usePlayerLevelUpdater();
 usePlayerStatsEffects();
  useVillagerResources();
-//   useServantResources();
+useServantResources();
 useItemsResources();
 useShop();
-//   useSkillActivation(); // Hook for the specific skill
+
   const router = useRouter();
   const { state } = usePlayer();
 
