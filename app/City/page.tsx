@@ -24,7 +24,7 @@ export default function City() {
             Village Map
           </li>
           <li onClick={() => handlePageChange("villageModal")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "villageModal" ? "#555" : "transparent" }}>
-            Village Modal
+            Gestion des Farmers
           </li>
           <li onClick={() => handlePageChange("bank")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "bank" ? "#555" : "transparent" }}>
             Bank
@@ -33,7 +33,7 @@ export default function City() {
             Shop
           </li>
           <li onClick={() => handlePageChange("servantManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "servantManagement" ? "#555" : "transparent" }}>
-            Servant Management
+            Gestion des serviteurs
           </li>
         </ul>
       </div>
