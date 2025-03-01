@@ -7,6 +7,7 @@ import Bank from "@/components/Bank/bank";
 import Shop from "@/components/Shop/shop";
 import ServantManagement from "@/components/servantManagement/servantManagement";
 import { StatUpgradeForm } from "@/components/Talents/statUpgrade";
+import ApogeeLevel from "@/components/Apogee/apogeeManagement";
 
 export default function City() {
   const [state, setState] = useState("closed");
@@ -36,8 +37,11 @@ export default function City() {
           <li onClick={() => handlePageChange("servantManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "servantManagement" ? "#555" : "transparent" }}>
             Gestion des serviteurs
           </li>
-          <li onClick={() => handlePageChange("skillManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "servantManagement" ? "#555" : "transparent" }}>
+          <li onClick={() => handlePageChange("skillManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "skillManagement" ? "#555" : "transparent" }}>
             Points de talents
+          </li>
+          <li onClick={() => handlePageChange("apogeeManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "apogeeManagement" ? "#555" : "transparent" }}>
+            Tour de l'apogée
           </li>
         </ul>
       </div>
@@ -50,6 +54,7 @@ export default function City() {
         {state === "shop" && <Shop />}
         {state === "servantManagement" && <ServantManagement />}
         {state === "skillManagement" && <StatUpgradeForm />}
+        {state === "apogeeManagement" && <ApogeeLevel />}
       </div>
     </div>
   );

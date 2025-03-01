@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { usePlayer, setLevel, setXp, setXpForLevelUp, SetApogeeLevel, ResetFarmersAndServants, setFarmerMaxLevel, setPlayerStats, SetServantStatsMultiplier, setResource, SetStatsPoints } from "../context/PlayerContext";
+import { usePlayer, setLevel, setXp, setXpForLevelUp, SetApogeeLevel, ResetFarmersAndServants, setFarmerMaxLevel, setPlayerStats, SetServantStatsMultiplier, setResource, SetStatsPoints, resetItems, SetMaxResource } from "../context/PlayerContext";
 
 function usePlayerLevelUpdater() {
   const { state, dispatch } = usePlayer();
@@ -23,6 +23,7 @@ function usePlayerLevelUpdater() {
     dispatch(SetApogeeLevel(1)); 
     dispatch(resetItems()); 
     dispatch(ResetFarmersAndServants()); 
+    dispatch(SetMaxResource(state.playerStats.maxResource + (50/100 * state.playerStats.maxResource)));
 
     dispatch(setPlayerStats(state.playerStats.stats,"add")); 
     dispatch(setFarmerMaxLevel(20)); 
@@ -31,11 +32,11 @@ function usePlayerLevelUpdater() {
     dispatch(setXp(-state.playerStats.xp)); 
     dispatch(setResource(-state.playerStats.resource));
 
-    const newRequiredXpForLevelUp = Math.round(
-      state.playerStats.requiredXpForLevelUp *
-      Math.pow(state.playerStats.requiredXpForLevelUpMultiplier, 1)
-    );
-    dispatch(setXpForLevelUp(newRequiredXpForLevelUp));
+    // const newRequiredXpForLevelUp = Math.round(
+    //   state.playerStats.requiredXpForLevelUp *
+    //   Math.pow(state.playerStats.requiredXpForLevelUpMultiplier, 1)
+    // );
+    // dispatch(setXpForLevelUp(newRequiredXpForLevelUp));
   };
 
   return { handleApogee };

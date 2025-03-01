@@ -26,6 +26,7 @@ interface PlayerContextType {
       onclickResource: 1,
       requiredXpForLevelUpMultiplier: 1.1,
       apogeeLevel:1,
+      maxResource: 50000,
       requiredXpForLevelUp:100,
       stats: {
         strength: 1, //basic on click resource
@@ -354,4 +355,9 @@ export const usePlayer = () => {
   export const SetServantStatsMultiplier = (statsMultiplier:number) => ({
     type: FarmerActionTypes.SET_SERVANT_STATS_MULTIPLIER,
     payload: statsMultiplier
+  })
+
+  export const SetMaxResource = (maxResource:number) => ({
+    type: PlayerActionTypes.SET_MAX_RESOURCE,
+    payload: maxResource
   })

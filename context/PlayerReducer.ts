@@ -20,7 +20,8 @@ export enum PlayerActionTypes {
   SET_SHOP_REDUCTION = "SET_SHOP_REDUCTION",
   SET_FARMER_RENDER_BONUS = "SET_FARMER_RENDER_BONUS",
   SET_XP_RENDER_BONUS = "SET_XP_RENDER_BONUS",
-  SET_APOGEE_LEVEL = "SET_APOGEE_LEVEL"
+  SET_APOGEE_LEVEL = "SET_APOGEE_LEVEL",
+  SET_MAX_RESOURCE = "SET_MAX_RESOURCE"
 }
 
 export interface PlayerStats {
@@ -38,6 +39,7 @@ export interface PlayerStats {
     farmerRenderBonus: number;
     xpRenderBonus: number;
     apogeeLevel:number;
+    maxResource: number;
   }
   
   
@@ -156,6 +158,11 @@ interface SetXpAction {
     type: PlayerActionTypes.SET_APOGEE_LEVEL;
     payload: number;
   }
+
+  interface SetMaxResourceAction {
+    type: PlayerActionTypes.SET_MAX_RESOURCE;
+    payload: number;
+  }
   
   // Combine action types
   export type PlayerAction =
@@ -177,7 +184,8 @@ interface SetXpAction {
     | SetShopReductionAction
     | SetFarmerRenderBonusAction
     | SetXpRenderBonusAction
-    | SetApogeeLevelAction;
+    | SetApogeeLevelAction
+    | SetMaxResourceAction;
   
   // Define the initial state and the reducer
   const playerReducer = (
@@ -221,11 +229,21 @@ interface SetXpAction {
             ),
           };
         }
+        case PlayerActionTypes.SET_APOGEE_LEVEL:
+          return {
+            ...state,
+            apogeeLevel: state.apogeeLevel + action.payload,
+          }
       case PlayerActionTypes.SET_XP_FOR_LEVEL_UP:
         return {
           ...state,
           requiredXpForLevelUp: action.payload,
         };
+      case PlayerActionTypes.SET_MAX_RESOURCE: 
+        return {
+          ...state,
+          maxResource: action.payload,
+        }
       default:
         return state;
     }
