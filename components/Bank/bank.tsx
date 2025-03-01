@@ -431,19 +431,19 @@ const Bank = () => {
                                   )}
                                 </div>
                                 {!hoveredItem.isEquipped ? (
-                                  <Button
+                                  <button
                                     className="bg-[#c2a57f] text-[#1a1a1a] font-bold hover:bg-[#d2b57f]"
                                     onClick={() => HandleItemClick(hoveredItem)}
                                   >
                                     Équiper
-                                  </Button>
+                                  </button>
                                 ) : (
-                                  <Button
+                                  <button
                                     className="bg-[#c2a57f] text-[#1a1a1a] font-bold hover:bg-[#d2b57f]"
                                     onClick={() => HandleItemClick(hoveredItem)}
                                   >
                                     Déséquiper
-                                  </Button>
+                                  </button>
                                 )}
                               </div>
                             )}

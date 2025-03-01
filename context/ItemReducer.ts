@@ -12,12 +12,12 @@ export enum ItemActionTypes {
     SET_ITEM_VALUE= "SET_ITEM_VALUE",
     SET_ITEM_DURABILITY= "SET_ITEM_DURABILITY",
     ADD_ITEM = "ADD_ITEM",
-    RESET_ITEMS = "RESET_ITEMS",
-    
+    RESET_ITEMS = "RESET_ITEMS"
   }
 
 export interface GameItem {
     id: number;
+    itemId : number;
     isEquipped: boolean;
     name:string;
     type: ItemType;
@@ -193,9 +193,11 @@ interface ResetItemsAction {
           }
           case ItemActionTypes.ADD_ITEM: {
             const newItem = action.payload;
+            const id = state.items.length > 0  ? Math.max(...state.items.map(item => item.id)) +1 : 0;
+            newItem.id = id;
             return {
               ...state,
-              items: [...state.items, newItem],
+              items: [...state.items, JSON.parse(JSON.stringify(newItem))],
               totalItems: state.totalItems + 1,
             };
           }

@@ -25,7 +25,7 @@ const useItemsResources = () => {
   const initialItems = useMemo(
     () => [
       {
-        id: 1,
+        itemId: 1,
         name: "Pioche de mineur",
         type: ItemType.MAIN_HAND,
         isEquipped: false,
@@ -44,7 +44,7 @@ const useItemsResources = () => {
         icon: "/uncommon_sword.png"
       },
       {
-        id: 2,
+        itemId: 2,
         name: "Miner's Helmet",
         type: ItemType.HEAD,
         isEquipped: false,
@@ -66,7 +66,7 @@ const useItemsResources = () => {
         icon: "/rare_plate_helmet.png"
       },
       {
-        id: 3,
+        itemId: 3,
         name: "Guardian's Chestplate",
         type: ItemType.CHESTPLATE,
         isEquipped: false,
@@ -88,7 +88,7 @@ const useItemsResources = () => {
                   icon: "/rare_plate_chestplate.png"
       },
       {
-        id: 4,
+        itemId: 4,
         name: "Belt of Endurance",
         type: ItemType.BELT,
         isEquipped: false,
@@ -110,7 +110,7 @@ const useItemsResources = () => {
            icon: "/rare_belt.png"
       },
       {
-        id: 5,
+        itemId: 5,
         name: "Ring of Focus",
         type: ItemType.RING,
         isEquipped: false,
@@ -132,7 +132,7 @@ const useItemsResources = () => {
              icon: "/rare_ring.png"
       },
       {
-        id: 6,
+        itemId: 6,
         name: "Boots of Swiftness",
         type: ItemType.BOOTS,
         isEquipped: false,
@@ -153,7 +153,7 @@ const useItemsResources = () => {
          icon: "/rare_plate_boot.png"
       },
       {
-        id: 7,
+        itemId: 7,
         name: "Artifact of Wisdom",
         type: ItemType.ARTIFACT,
         isEquipped: false,
@@ -175,7 +175,7 @@ const useItemsResources = () => {
                    icon: "/epic_artifact1.png"
       },
       {
-        id: 8,
+        itemId: 8,
         name: "Ring of Mastery",
         type: ItemType.RING,
         isEquipped: false,

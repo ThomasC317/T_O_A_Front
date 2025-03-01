@@ -8,7 +8,7 @@ const useShop = () => {
     const shopTools = useMemo(
       () => [
         {
-          id: 9,
+          itemId: 9,
           name: "Sword of Valor",
           type: ItemType.MAIN_HAND,
           isEquipped: false,
@@ -29,7 +29,7 @@ const useShop = () => {
           icon: "/uncommon_sword.png"
         },
         {
-          id: 10,
+          itemId: 10,
           name: "Shield of Fortitude",
           type: ItemType.SECOND_HAND,
           isEquipped: false,
@@ -54,7 +54,7 @@ const useShop = () => {
       const shopArmors = useMemo(
         () => [
           {
-            id: 11,
+            itemId: 11,
             name: "Amulet of the Sage",
             type: ItemType.NECK,
             isEquipped: false,
@@ -75,7 +75,7 @@ const useShop = () => {
             icon: "/rare_neck.png"
           },
           {
-            id: 12,
+            itemId: 12,
             name: "Cloak of Shadows",
             type: ItemType.BACK,
             isEquipped: false,
@@ -96,7 +96,7 @@ const useShop = () => {
             icon: "/uncommon_back.png"
           },
           {
-            id: 13,
+            itemId: 13,
             name: "Crown of Command",
             type: ItemType.HEAD,
             isEquipped: false,
@@ -117,7 +117,7 @@ const useShop = () => {
             icon: "/rare_crown.png"
           },
           {
-            id: 15,
+            itemId: 14,
             name: "Belt of the Unyielding",
             type: ItemType.BELT,
             isEquipped: false,
@@ -768,7 +768,7 @@ const useShop = () => {
         (item) =>
           !state.gameItem.items.some((existing) => existing.id === item.id)
       );
-      dispatch(SetShopTools(itemsToAdd))
+      dispatch(SetShopTools(shopTools))
 
   }, [shopTools]);
 
@@ -778,7 +778,7 @@ const useShop = () => {
       (item) =>
         !state.gameItem.items.some((existing) => existing.id === item.id)
     );
-    dispatch(SetShopArmors(itemsToAdd))
+    dispatch(SetShopArmors(shopArmors))
 
 }, [shopArmors]);
 
@@ -788,17 +788,17 @@ useEffect(() => {
     (item) =>
       !state.gameItem.items.some((existing) => existing.id === item.id)
   );
-  dispatch(SetShopFarmers(itemsToAdd))
+  dispatch(SetShopFarmers(shopVillagers))
 
 }, [shopArmors]);
 
 useEffect(() => {
  
-  const itemsToAdd = shopServants.filter(
-    (item) =>
-      !state.gameItem.items.some((existing) => existing.id === item.id)
-  );
-  dispatch(SetShopServants(itemsToAdd))
+  // const itemsToAdd = shopServants.filter(
+  //   (item) =>
+  //     !state.gameItem.items.some((existing) => existing.id === item.id)
+  // );
+  dispatch(SetShopServants(shopServants))
 
 }, [shopArmors]);
 

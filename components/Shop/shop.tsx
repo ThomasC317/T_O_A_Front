@@ -56,9 +56,11 @@ const Shop = () => {
 
   // Function to toggle equipped state
   const buyItem = (item) => {
+    console.log("filter ? " +filter)
     if (item.value <= state.playerStats.resource) {
       switch(filter) {
-        case GeneralType.ARMOR || GeneralType.TOOL:
+        case GeneralType.ARMOR,GeneralType.TOOL:
+          console.log("item buy ???")
           dispatch(addItem(item));
           dispatch(setResource(-item.value));
           break;
@@ -72,38 +74,18 @@ const Shop = () => {
           dispatch(AddServant(item));
           dispatch(setResource(-item.value))
           dispatch(removeServant(item))
+        default:
+          console.log("default")
+
       }
       handleClose();
     }
   };
 
-  const handleSetFilter = (type: GeneralType) => {
-    // switch (type) {
-    //   case GeneralType.ARMOR:
-    //     setFilteredItems(armors)
-    //     break;
-  
-    //   case GeneralType.TOOL:
-    //     setFilteredItems(tools)
-    //     break;
-  
-    //   case GeneralType.FARMERS:
-    //     setFilteredItems(farmers)
-    //     break;
-  
-    //   case GeneralType.SERVANTS:
-    //     setFilteredItems(servants)
-    //     break;
-  
-    //   default:
-    //     setFilteredItems(tools)
-    //     break;
-    // }
 
-    setFilter(type)
-  };
-
-
+  useEffect(() => {
+    console.log(state.gameItem.items)
+  }, [state.gameItem.items]);
 
   const getShopItemsByFilter = (filter: GeneralType) => {
     console.log(filter)
@@ -183,7 +165,7 @@ const Shop = () => {
                         ? "bg-[#3b3b3b] text-white"
                         : "text-[#7a7a7a] hover:bg-[#3b3b3b] hover:text-white"
                     }`}
-                    onClick={() => handleSetFilter(GeneralType.TOOL)}
+                    onClick={() => setFilter(GeneralType.TOOL)}
                   >
                     Outils
                   </button>
@@ -193,7 +175,7 @@ const Shop = () => {
                         ? "bg-[#3b3b3b] text-white"
                         : "text-[#7a7a7a] hover:bg-[#3b3b3b] hover:text-white"
                     }`}
-                    onClick={() => handleSetFilter(GeneralType.ARMOR)}
+                    onClick={() => setFilter(GeneralType.ARMOR)}
                   >
                     Armure
                   </button>
@@ -203,7 +185,7 @@ const Shop = () => {
                         ? "bg-[#3b3b3b] text-white"
                         : "text-[#7a7a7a] hover:bg-[#3b3b3b] hover:text-white"
                     }`}
-                    onClick={() => handleSetFilter(GeneralType.FARMERS)}
+                    onClick={() => setFilter(GeneralType.FARMERS)}
                   >
                     Farmers
                   </button>
@@ -213,7 +195,7 @@ const Shop = () => {
                         ? "bg-[#3b3b3b] text-white"
                         : "text-[#7a7a7a] hover:bg-[#3b3b3b] hover:text-white"
                     }`}
-                    onClick={() => handleSetFilter(GeneralType.SERVANTS)}
+                    onClick={() => setFilter(GeneralType.SERVANTS)}
                   >
                     Servants
                   </button>
