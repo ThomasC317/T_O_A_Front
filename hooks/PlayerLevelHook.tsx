@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { usePlayer, setLevel, setXp, setXpForLevelUp, SetApogeeLevel, ResetFarmersAndServants, setFarmerMaxLevel, setPlayerStats, SetServantStatsMultiplier, setResource } from "../context/PlayerContext";
+import { usePlayer, setLevel, setXp, setXpForLevelUp, SetApogeeLevel, ResetFarmersAndServants, setFarmerMaxLevel, setPlayerStats, SetServantStatsMultiplier, setResource, SetStatsPoints } from "../context/PlayerContext";
 
 function usePlayerLevelUpdater() {
   const { state, dispatch } = usePlayer();

@@ -6,6 +6,7 @@ import VillageModal from "@/components/VillageModal/villageModal";
 import Bank from "@/components/Bank/bank";
 import Shop from "@/components/Shop/shop";
 import ServantManagement from "@/components/servantManagement/servantManagement";
+import { StatUpgradeForm } from "@/components/Talents/statUpgrade";
 
 export default function City() {
   const [state, setState] = useState("closed");
@@ -35,6 +36,9 @@ export default function City() {
           <li onClick={() => handlePageChange("servantManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "servantManagement" ? "#555" : "transparent" }}>
             Gestion des serviteurs
           </li>
+          <li onClick={() => handlePageChange("skillManagement")} style={{ cursor: "pointer", padding: "10px", backgroundColor: state === "servantManagement" ? "#555" : "transparent" }}>
+            Points de talents
+          </li>
         </ul>
       </div>
 
@@ -45,6 +49,7 @@ export default function City() {
         {state === "bank" && <Bank />}
         {state === "shop" && <Shop />}
         {state === "servantManagement" && <ServantManagement />}
+        {state === "skillManagement" && <StatUpgradeForm />}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ function usePlayerStatsUpdater() {
   useEffect(() => {
     const interval = setInterval(() => {
       let passiveValue = state.playerStats.passiveResource;
-
+      
       dispatch(setResource(passiveValue));
       dispatch(setTotalResource(passiveValue));
       const xpOnInterval =

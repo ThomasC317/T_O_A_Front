@@ -6,6 +6,7 @@ import { CombinedState, rootReducer } from './CombinedReducer';
 import { GameStats } from '@/utils/GameStats';
 import { GameItem, ItemActionTypes } from './ItemReducer';
 import { ShopActionTypes } from './ShopReducer';
+import { TalentActionTypes } from './TalentReducer';
 
 
 interface PlayerContextType {
@@ -65,6 +66,19 @@ interface PlayerContextType {
       name: "kaaris",
       remainingTime: 1
     },
+    talentState: {
+      stats: {
+        strength: 0, 
+        agility: 0,
+        intelligence: 0, 
+        stamina: 0,
+        charisma: 0,
+        criticalChances: 0,
+        motivation: 0,
+        concentration: 0,
+      } as GameStats,
+      statPoints:0
+    }
   };
 
   

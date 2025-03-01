@@ -15,9 +15,9 @@ import { useServantResources } from "@/hooks/ServantResourceHook";
 
 const Navbar = () => {
 usePlayerStatsUpdater();
-//   usePlayerLevelUpdater();
+usePlayerLevelUpdater();
 usePlayerStatsEffects();
- useVillagerResources();
+useVillagerResources();
 useServantResources();
 useItemsResources();
 useShop();
