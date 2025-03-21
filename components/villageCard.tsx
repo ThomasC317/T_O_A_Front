@@ -5,7 +5,7 @@ import { useCallback, useEffect } from "react";
 // import SkillButton from "./skill-button";
 import { useRouter } from "next/navigation";
 
-export function VillageCard() {
+export function VillageCard({village}) {
   const { state ,dispatch } = usePlayer();
   const router = useRouter();
 
@@ -19,12 +19,12 @@ export function VillageCard() {
     <div className=" mx-auto p-2 bg-gray-800 rounded-lg" style={{marginTop:"2rem", position:"absolute", bottom:"5rem", left:"50%", transform:"translateX(-50%)", zIndex:10}}>
       <div className="flex items-center justify-between p-2 bg-gray-900 rounded-t-lg">
         <div className="flex items-center gap-6 justify-between w-full">
-        {state.playerStats.level}
+        {village.level}
         </div>
       </div>
       <div className="p-2 bg-gray-700">
         <div className="relative mb-2 flex flex-row gap-6">
-            Hurlevent
+            {village.name}
         </div>
       </div>
       <div className="p-2 bg-gray-900 rounded-b-lg">

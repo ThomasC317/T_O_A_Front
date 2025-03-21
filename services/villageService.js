@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"
+const API_URL = "http://localhost:5000/api/villages/"
 
 export const getVillage = async (villageId) => {
-    const response = await axios.get(`${API_URL}/${villageId}`);
+    const response = await axios.get(`${API_URL}`,{villageId});
     return response.data;
   };
   

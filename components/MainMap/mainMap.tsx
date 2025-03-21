@@ -1,11 +1,12 @@
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, useTexture } from "@react-three/drei";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextureLoader } from "three";
 import { VillageCard } from "../villageCard";
+import { createVillage, getVillage } from "@/services/villageService";
+import type { Village } from "@/models/village";
 
 function Map() {    
-  
     const mapTexture = useLoader(TextureLoader, "/map.png");
     console.log("Texture chargée :", mapTexture); // Debug
     return (
@@ -68,9 +69,38 @@ function Map() {
   
   
 
-export default function MainMap() {
+  export default function MainMap() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [village, setVillage] = useState<Village | null>(null);
+  
+    useEffect(() => {
+      const checkAndCreateVillage = async () => {
+        let existingVillage: Village | null = await getVillage(1);
+  
+        if (!existingVillage) {
+          const newVillage: Village = await createVillage({ 
+            name: 'New Village', 
+            level: 1, 
+            resourcePerSecond: 10, 
+            resource: 100, 
+            totalResource: 1000 
+          });
+          existingVillage = newVillage;
+        }
+  
+        setVillage(existingVillage);
+      };
+  
+      checkAndCreateVillage();
+    }, []);
+  
+    // Si village est encore null, tu peux afficher un message de chargement ou rien
+    useEffect(() => {
+      if (village) {
+        console.log("Village: " + village.name);
+      }
+    }, [village]);
+  
     const handleVillageClick = () => {
       setIsModalOpen(true);
     };
@@ -78,28 +108,35 @@ export default function MainMap() {
     const handleModalClose = () => {
       setIsModalOpen(false);
     };
-  return (
-    <div style={{ margin: 0, padding: 0, overflow: 'hidden', width: '100vw', height: '100vh' }}>
-          <VillageCard></VillageCard>
-<Canvas   style={{ width: "100%", height: "100%" }}  // Taille pleine de l'écran
-      orthographic
-      camera={{
-        position: [0, 20, 0],
-        zoom: 150,
-        near: 0.1,
-        far: 200
-      }}>
-
-<ambientLight intensity={1.5} />
-<directionalLight position={[5, 10, 5]} intensity={2} />
-
-    <Map />
-    <Village position={[0, 0.00, -1.5]} onClick={handleVillageClick} /> 
-
-    <OrbitControls enableRotate={false} enablePan={false} enableZoom={false} />
-  </Canvas>
-
- <Modal isOpen={isModalOpen} onClose={handleModalClose} />
- </div>
-  );
-}
+  
+    return (
+      <div style={{ margin: 0, padding: 0, overflow: 'hidden', width: '100vw', height: '100vh' }}>
+        {village ? (
+          <VillageCard village={village} />
+        ) : (
+          <p>Chargement du village...</p>
+        )}
+  
+        <Canvas 
+          style={{ width: "100%", height: "100%" }} 
+          orthographic 
+          camera={{
+            position: [0, 20, 0],
+            zoom: 150,
+            near: 0.1,
+            far: 200
+          }}
+        >
+          <ambientLight intensity={1.5} />
+          <directionalLight position={[5, 10, 5]} intensity={2} />
+  
+          <Map />
+          <Village position={[0, 0.00, -1.5]} onClick={handleVillageClick} />
+  
+          <OrbitControls enableRotate={false} enablePan={false} enableZoom={false} />
+        </Canvas>
+  
+        <Modal isOpen={isModalOpen} onClose={handleModalClose} />
+      </div>
+    );
+  }
