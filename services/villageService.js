@@ -31,4 +31,3 @@ export const getVillage = async (villageId) => {
     const response = await axios.put(`${API_URL}/update-level/${villageId}`);
     return response.data;
   };
-  

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import usePlayerStatsUpdater from "@/hooks/PlayerResourceHook";
 import usePlayerLevelUpdater from "@/hooks/PlayerLevelHook";
 import { useVillagerResources } from "@/hooks/FarmerResourceHook";
-import { useItemsResources } from "@/hooks/ItemHook";
+// import { useItemsResources } from "@/hooks/ItemHook";
 import { usePlayer } from "@/context/PlayerContext";
 import { memo, useCallback, useEffect } from "react";
 import useShop from "@/hooks/ShopHook";
@@ -19,7 +19,7 @@ usePlayerLevelUpdater();
 usePlayerStatsEffects();
 useVillagerResources();
 useServantResources();
-useItemsResources();
+// useItemsResources();
 useShop();
 
   const router = useRouter();

@@ -55,7 +55,7 @@ function Map() {
   
     return (
       <mesh position={position} rotation={[-Math.PI / 2, 0, 0]} onClick={onClick}>
-        <planeGeometry args={[3, 2]} /> {/* Ajuste la taille */}
+        <planeGeometry args={[3, 2]} />
         <meshStandardMaterial   
        map={cityTexture} 
        transparent={true}
@@ -67,8 +67,6 @@ function Map() {
     );
   }
   
-  
-
   export default function MainMap() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [village, setVillage] = useState<Village | null>(null);

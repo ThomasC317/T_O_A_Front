@@ -1,4 +1,4 @@
-import { SetShopArmors, SetShopFarmers, SetShopServants, SetShopTools, usePlayer } from '@/context/PlayerContext';
+import { usePlayer } from '@/context/PlayerContext';
 import { GeneralType, ItemType } from '@/utils/Item';
 import { GameQualities } from '@/utils/GameQualities';
 import { useEffect, useMemo, useState } from 'react';
@@ -762,52 +762,52 @@ const useShop = () => {
     ],
     []
   );
-  useEffect(() => {
+//   useEffect(() => {
  
-      const itemsToAdd = shopTools.filter(
-        (item) =>
-          !state.gameItem.items.some((existing) => existing.id === item.id)
-      );
-      dispatch(SetShopTools(shopTools))
+//       const itemsToAdd = shopTools.filter(
+//         (item) =>
+//           !state.gameItem.items.some((existing) => existing.id === item.id)
+//       );
+//       dispatch(SetShopTools(shopTools))
 
-  }, [shopTools]);
+//   }, [shopTools]);
 
-  useEffect(() => {
+//   useEffect(() => {
  
-    const itemsToAdd = shopArmors.filter(
-      (item) =>
-        !state.gameItem.items.some((existing) => existing.id === item.id)
-    );
-    dispatch(SetShopArmors(shopArmors))
+//     const itemsToAdd = shopArmors.filter(
+//       (item) =>
+//         !state.gameItem.items.some((existing) => existing.id === item.id)
+//     );
+//     dispatch(SetShopArmors(shopArmors))
 
-}, [shopArmors]);
+// }, [shopArmors]);
 
-useEffect(() => {
+// useEffect(() => {
  
-  const itemsToAdd = shopVillagers.filter(
-    (item) =>
-      !state.gameItem.items.some((existing) => existing.id === item.id)
-  );
-  dispatch(SetShopFarmers(shopVillagers))
+//   const itemsToAdd = shopVillagers.filter(
+//     (item) =>
+//       !state.gameItem.items.some((existing) => existing.id === item.id)
+//   );
+//   dispatch(SetShopFarmers(shopVillagers))
 
-}, [shopArmors]);
+// }, [shopArmors]);
 
-useEffect(() => {
+// useEffect(() => {
  
-  // const itemsToAdd = shopServants.filter(
-  //   (item) =>
-  //     !state.gameItem.items.some((existing) => existing.id === item.id)
-  // );
-  dispatch(SetShopServants(shopServants))
+//   // const itemsToAdd = shopServants.filter(
+//   //   (item) =>
+//   //     !state.gameItem.items.some((existing) => existing.id === item.id)
+//   // );
+//   dispatch(SetShopServants(shopServants))
 
-}, [shopArmors]);
+// }, [shopArmors]);
 
 
 
-  useEffect(() => {
-    console.log(state.shopState.items)
-  }, [state.shopState.items])
-  // Access the necessary state from the Redux store
+//   useEffect(() => {
+//     console.log(state.shopState.items)
+//   }, [state.shopState.items])
+//   // Access the necessary state from the Redux store
   
  
 
@@ -819,7 +819,7 @@ useEffect(() => {
   // }, [state.playerStats.stats.charisma]);
 
   // Return the items list and buyItem function
-  return { shopTools,shopArmors };
+  // return { shopTools,shopArmors };
 };
 
 export default useShop;

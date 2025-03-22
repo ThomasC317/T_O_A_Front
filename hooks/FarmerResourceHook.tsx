@@ -6,9 +6,6 @@ import {
   setFarmerLevel,
   addFarmer,
   setResource,
-  setFarmerResourcePerSecond,
-  setNextUpgradeCost,
-  setPlayerStats,
   setFarmerIsActive,
 } from "@/context/PlayerContext";
 import { GameQualities } from "@/utils/GameQualities";
@@ -215,15 +212,15 @@ const useVillagerResources = () => {
 
   const hasMounted = useRef(false);
 
-  useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      console.log(initialVillagers);
-      initialVillagers.forEach((farmer) => {
-        dispatch(addFarmer(farmer));
-      });
-    }
-  }, [initialVillagers]);
+  // useEffect(() => {
+  //   if (!hasMounted.current) {
+  //     hasMounted.current = true;
+  //     console.log(initialVillagers);
+  //     initialVillagers.forEach((farmer) => {
+  //       dispatch(addFarmer(farmer));
+  //     });
+  //   }
+  // }, [initialVillagers]);
 
 };
 
@@ -232,10 +229,6 @@ const useSetFarmerIsActive = () => {
 
   const setFarmerIsActiveHandler = useCallback(
     (farmer: Farmer) => {
-        if(!farmer.isActive)
-          dispatch(setPlayerStats({ intelligence: farmer.resourcePerSecond }, "add"));
-        else 
-          dispatch(setPlayerStats({ intelligence: farmer.resourcePerSecond }, "remove"));
         dispatch(setFarmerIsActive(farmer.id,!farmer.isActive))
     },
     [dispatch]
@@ -252,16 +245,16 @@ const useSetFarmerLevel = () => {
         state.playerStats.resource >= farmer.nextUpgradeCost
       ) {
         dispatch(setFarmerLevel(farmer.id, 1));
-        dispatch(
-          setFarmerResourcePerSecond(farmer.id, farmer.baseResourcePerSecond)
-        );
-        dispatch(setResource(-farmer.nextUpgradeCost));
-        dispatch(setPlayerStats({ intelligence: farmer.baseResourcePerSecond }, "add"));
-        let nextUpgradeCost = Math.round(
-          farmer.baseResourceForUpgrade *
-            Math.pow(farmer.resourceUpgradeFactor, farmer.level)
-        );
-        dispatch(setNextUpgradeCost(farmer.id, nextUpgradeCost));
+        // dispatch(
+        //   setFarmerResourcePerSecond(farmer.id, farmer.baseResourcePerSecond)
+        // );
+        // dispatch(setResource(-farmer.nextUpgradeCost));
+        // dispatch(setPlayerStats({ intelligence: farmer.baseResourcePerSecond }, "add"));
+        // let nextUpgradeCost = Math.round(
+        //   farmer.baseResourceForUpgrade *
+        //     Math.pow(farmer.resourceUpgradeFactor, farmer.level)
+        // );
+        // dispatch(setNextUpgradeCost(farmer.id, nextUpgradeCost));
       }
     },
     [state.playerStats.resource, dispatch]

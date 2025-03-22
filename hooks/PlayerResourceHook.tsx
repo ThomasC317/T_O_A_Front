@@ -2,8 +2,6 @@ import { useEffect, useMemo } from "react";
 import {
   usePlayer,
   setResource,
-  setTotalResource,
-  setXp,
   SetPassiveResource,
 } from "../context/PlayerContext";
 
@@ -25,10 +23,10 @@ function usePlayerStatsUpdater() {
       let passiveValue = state.playerStats.passiveResource;
       
       dispatch(setResource(passiveValue));
-      dispatch(setTotalResource(passiveValue));
+      // dispatch(setTotalResource(passiveValue));
       const xpOnInterval =
         passiveValue + passiveValue * state.playerStats.xpRenderBonus;
-      dispatch(setXp(xpOnInterval));
+      // dispatch(setXp(xpOnInterval));
     }, 1000);
 
     return () => clearInterval(interval);

@@ -1,15 +1,8 @@
 import { useEffect } from "react";
 
 import {
-  setItemValue,
-  SetSkillDisplayedReloadTime,
-  setCriticalChance,
-  setFarmerRenderBonus,
-  setXpRenderBonus,
-  setOnclickResource,
   SetPassiveResource,
   usePlayer,
-  setPlayerStats,
 } from "../context/PlayerContext"; // Replace with the actual path to your action creators
 
 function usePlayerStatsEffects() {
@@ -44,37 +37,37 @@ function usePlayerStatsEffects() {
 //     });
 //   }, [state.playerStats.stats.stamina]);
 
-  useEffect(() => {
-    const chance = Math.floor(state.playerStats.stats.criticalChances / 100); // 1% chance per 100 criticalChance
-    dispatch(setCriticalChance(chance));
-    console.log("new critical chance Time:", chance)
-  }, [state.playerStats.stats.criticalChances]);
+  // useEffect(() => {
+  //   const chance = Math.floor(state.playerStats.stats.criticalChances / 100); // 1% chance per 100 criticalChance
+  //   dispatch(setCriticalChance(chance));
+  //   console.log("new critical chance Time:", chance)
+  // }, [state.playerStats.stats.criticalChances]);
 
-  useEffect(() => {
-    const bonusFarmerRender = Math.floor(
-      state.playerStats.stats.motivation / 100
-    ); // 1% shop reduction per 100 charisma
-    dispatch(
-      setFarmerRenderBonus(bonusFarmerRender)
-    );
-    console.log("new farmer render bonus:", bonusFarmerRender)
-  }, [state.playerStats.stats.motivation]);
+  // useEffect(() => {
+  //   const bonusFarmerRender = Math.floor(
+  //     state.playerStats.stats.motivation / 100
+  //   ); // 1% shop reduction per 100 charisma
+  //   dispatch(
+  //     setFarmerRenderBonus(bonusFarmerRender)
+  //   );
+  //   console.log("new farmer render bonus:", bonusFarmerRender)
+  // }, [state.playerStats.stats.motivation]);
 
-  useEffect(() => {
-    const bonusXp = Math.floor(state.playerStats.stats.concentration / 100); // 1% chance per 100 criticalChance
-    dispatch(setXpRenderBonus(bonusXp));
-    console.log("new xp bonus:", bonusXp)
-  }, [state.playerStats.stats.concentration]);
+  // useEffect(() => {
+  //   const bonusXp = Math.floor(state.playerStats.stats.concentration / 100); // 1% chance per 100 criticalChance
+  //   dispatch(setXpRenderBonus(bonusXp));
+  //   console.log("new xp bonus:", bonusXp)
+  // }, [state.playerStats.stats.concentration]);
 
-  useEffect(() => {
-    dispatch(setOnclickResource(state.playerStats.stats.strength))
-    console.log("new onclick resource:", state.playerStats.stats.strength)
-  }, [state.playerStats.stats.strength]);
+  // useEffect(() => {
+  //   dispatch(setOnclickResource(state.playerStats.stats.strength))
+  //   console.log("new onclick resource:", state.playerStats.stats.strength)
+  // }, [state.playerStats.stats.strength]);
 
-  useEffect(() => {
-    dispatch(SetPassiveResource(state.playerStats.stats.intelligence))
-    console.log("new passive resource:", state.playerStats.stats.intelligence)
-  }, [state.playerStats.stats.intelligence]);
+  // useEffect(() => {
+  //   dispatch(SetPassiveResource(state.playerStats.stats.intelligence))
+  //   console.log("new passive resource:", state.playerStats.stats.intelligence)
+  // }, [state.playerStats.stats.intelligence]);
 
   // useEffect(()=> {
   //   dispatch(setPlayerStats(state.talentState.stats, "add"));
