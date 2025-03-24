@@ -1,87 +1,76 @@
 "use client"
 import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-import { PlayerActionTypes, PlayerAction } from './PlayerReducer';
+import { VillageActionTypes, PlayerAction } from './VillageReducer';
 import { Farmer, FarmerAction, FarmerActionTypes, Servant } from './FarmerReducer';
 import { CombinedState, rootReducer } from './CombinedReducer';
 import { GameStats } from '@/utils/GameStats';
 import { GameItem, ItemActionTypes } from './ItemReducer';
 import { ShopActionTypes } from './ShopReducer';
 import { TalentActionTypes } from './TalentReducer';
-import { updateLevel, updateResource, updateResourcePerSecond } from '@/services/villageService';
+import { getVillage, updateLevel, updateResource, updateResourcePerSecond } from '@/services/villageService';
 import { createVillageFarmer, setVillageFarmerIsActive, setVillageFarmerLevel } from '@/services/villageFarmerService'
 import { createVillageServant} from '@/services/villageServantService'
 import {createApogeeVillage} from '@/services/villageApogeeService'
+import { UserActions, UserActionTypes } from './UserReducer';
 
 interface PlayerContextType {
     state: CombinedState;
-    dispatch: React.Dispatch<PlayerAction | FarmerAction>;
+    dispatch: React.Dispatch<PlayerAction | FarmerAction | UserActions>;
   }
-
+ 
   const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
   const initialState: CombinedState = {
-    playerStats: {
+    villageFarmers: {
+      id: 0,
+      totalResourceGenerated: 0,
+      isActive: false,
+      level: 0,
+      quality: 0,
+      nextUpgradeCost: 0,
+      resourcePerSecond: 0
+    },
+    user: {
+      activeVillage: {
+        xp: 0,
+        level: 1,
+        resource: 0,
+        totalResource: 0,
+        resourcePerSecond: 1,
+        id: 0,
+        name: '',
+        remainingSkillPoints: 0,
+        skills: [],
+        villageServants: [],
+        villageFarmers: [],
+        villageItem: [],
+        villageShops: [],
+        requiredXpToLevelUp: 0
+      },
+      id: 0,
+      username: '',
+      email: '',
+      password: '',
+      createdAt: new Date,
+      updatedAt: new Date,
+      village: [],
+      saves: []
+    },
+    village: {
       xp: 0,
       level: 1,
       resource: 0,
       totalResource: 0,
-      passiveResource: 1,
-      onclickResource: 1,
-      requiredXpForLevelUpMultiplier: 1.1,
-      apogeeLevel:1,
-      maxResource: 50000,
-      requiredXpForLevelUp:100,
-      stats: {
-        strength: 1, //basic on click resource
-        agility: 0,
-        intelligence: 1, //basic passive resource
-        stamina: 0,
-        charisma: 0,
-        criticalChances: 0,
-        motivation: 0,
-        concentration: 0,
-      } as GameStats,
-      criticalChances:0,
-    shopReduction:0,
-    farmerRenderBonus: 0,
-    xpRenderBonus:0
-    },
-    farmerStats: {
-      servants: [],
-      farmers: [],
-      totalFarmers: 4,
-      totalServants:0,
-      totalResourcesGenerated: 0,
-      farmersMaxLevel:40,
-      servantStatsMultiplier : 1,
-    },
-    gameItem: {
-      items: [],
-      totalItems: 0
-    },
-    shopState: {
-      tools: [],
-      armors: [],
-      farmers: [],
-      servants: [],
-      displayedFarmers:[],
-      displayedServants: [],
+      resourcePerSecond: 1,
       id: 0,
-      name: "kaaris",
-      remainingTime: 1
-    },
-    talentState: {
-      stats: {
-        strength: 0, 
-        agility: 0,
-        intelligence: 0, 
-        stamina: 0,
-        charisma: 0,
-        criticalChances: 0,
-        motivation: 0,
-        concentration: 0,
-      } as GameStats,
-      statPoints:0
+      name: '',
+      remainingSkillPoints: 0,
+      skills: [],
+      villageServants: [],
+      villageFarmers: [],
+      villageItem: [],
+      villageShops: [],
+      requiredXpToLevelUp: 0
     }
   };
 
@@ -105,7 +94,15 @@ export const usePlayer = () => {
     return context;
   };
 
-  
+  export const loadVillage = async (villageId: number, dispatch: React.Dispatch<any>) => {
+    try {
+      const data = await getVillage(villageId);
+      dispatch({ type: UserActionTypes.SET_VILLAGE, payload: data });
+    } catch (error) {
+      console.error("Erreur lors du chargement du village :", error);
+    }
+  };
+
   // export const setXp = async(xp: number) => ({
   //   await 
   //   // type: PlayerActionTypes.SET_XP,
@@ -118,11 +115,27 @@ export const usePlayer = () => {
     };
   };
   
-  export const setResource = (amount: number) => {
-    return async () => {
-      await updateResource(amount)
-    };
+  export const setResource = async (amount: number, dispatch: React.Dispatch<any>) => {
+    try {
+      const data = await updateResource(1, amount); 
+      if(data)
+      {
+        dispatch({
+          type: VillageActionTypes.UPDATE_RESOURCE,
+          payload: amount,
+        });
+      }
+    }
+    catch (error) {
+      console.error("Erreur mise à jour ressource :", error);
+    }
   };
+
+  // export const setResource = async(amount: number) => ({
+  //   type: PlayerActionTypes.UPDATE_RESOURCE,
+  //   payload: amount,
+  // });
+  
   
   // export const setTotalResource = (total: number) => {
 

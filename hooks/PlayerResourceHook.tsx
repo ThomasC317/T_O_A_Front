@@ -9,28 +9,28 @@ function usePlayerStatsUpdater() {
   const { state, dispatch } = usePlayer();
 
   // Memoize the intelligence and strength stats
-  const intelligence = useMemo(
-    () => state.playerStats.stats.intelligence,
-    [state.playerStats.stats.intelligence]
-  );
-  const strength = useMemo(
-    () => state.playerStats.stats.strength,
-    [state.playerStats.stats.strength]
-  );
+  // const intelligence = useMemo(
+  //   () => state.playerStats.stats.intelligence,
+  //   [state.playerStats.stats.intelligence]
+  // );
+  // const strength = useMemo(
+  //   () => state.playerStats.stats.strength,
+  //   [state.playerStats.stats.strength]
+  // );
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let passiveValue = state.playerStats.passiveResource;
-      
-      dispatch(setResource(passiveValue));
-      // dispatch(setTotalResource(passiveValue));
-      const xpOnInterval =
-        passiveValue + passiveValue * state.playerStats.xpRenderBonus;
-      // dispatch(setXp(xpOnInterval));
+        console.log("ressource +" + state.village.resourcePerSecond)
+        setResource(state.village.resourcePerSecond,dispatch);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [state.playerStats.passiveResource, dispatch]);
+  }, [state.village.resourcePerSecond, dispatch]);
+
+  
+  useEffect(() => {
+    console.log("active village update" +state.user.activeVillage?.name)
+  }, [state.user.activeVillage]);
 }
 
 export default usePlayerStatsUpdater;

@@ -6,12 +6,12 @@ function usePlayerLevelUpdater() {
 
   useEffect(() => {
 
-    if(state.playerStats.xp >= state.playerStats.requiredXpForLevelUp)
+    if(state.village.xp >= state.village.requiredXpToLevelUp)
     {
       dispatch(setLevel(1));    
     }
 
-  }, [state.playerStats.xp,dispatch])
+  }, [state.village.xp,dispatch])
 
   const handleApogee = () => {
     dispatch(SetApogeeLevel(1)); 

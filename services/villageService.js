@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/villages/"
+const API_URL = "http://localhost:5000/api/villages"
 
 export const getVillage = async (villageId) => {
     const response = await axios.get(`${API_URL}`,{villageId});
@@ -13,8 +13,14 @@ export const getVillage = async (villageId) => {
   };
   
   export const updateResource = async (villageId, newResource) => {
-    const response = await axios.put(`${API_URL}/update-resource`, { villageId, newResource });
-    return response.data;
+    try {
+      console.log("Appel API avec", villageId, newResource);
+      const response = await axios.put(`${API_URL}/${villageId}/resource`, { newResource });
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de l'update des ressources :", error.response?.data || error.message);
+      throw error;
+    }
   };
   
   export const updateResourcePerSecond = async (villageId, newResourcePerSecond) => {

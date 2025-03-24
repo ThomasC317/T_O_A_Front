@@ -11,6 +11,7 @@ import useShop from "@/hooks/ShopHook";
 
 import usePlayerStatsEffects from "@/hooks/PlayerStatsHook";
 import { useServantResources } from "@/hooks/ServantResourceHook";
+import { useInitGame } from "@/hooks/InitHook";
 
 
 const Navbar = () => {
@@ -19,6 +20,7 @@ usePlayerLevelUpdater();
 usePlayerStatsEffects();
 useVillagerResources();
 useServantResources();
+useInitGame();
 // useItemsResources();
 useShop();
 
@@ -35,10 +37,10 @@ useShop();
       <nav className="warcraft-nav flex items-center gap-10 p-body-pageContent justify-center relative">
       <div className="flex flex-row items-center">
         <img src="/arcanum.png" width={40} height={40}/>
-        <div className="text-lg font-semibold"> {state.playerStats.resource} </div>
+        <div className="text-lg font-semibold"> {state.village.resource} </div>
         </div>
         <div className="flex flex-row items-center">
-        <div className="text-lg font-semibold"> {state.playerStats.passiveResource}  </div>
+        <div className="text-lg font-semibold"> {state.village.resourcePerSecond}  </div>
         <img src="/arcanum.png" width={40} height={40}/>
         <div className="text-lg font-semibold"> /s </div>
         </div>
@@ -47,17 +49,17 @@ useShop();
             <img src="/GameLogo.png" alt="Portrait" className="hexagon-img" />
           </div>
           <div className="flex flex-row items-center gap-2">
-            <div className="text-lg font-semibold">Niveau {state.playerStats.level} - {state.playerStats.apogeeLevel}</div>
+            <div className="text-lg font-semibold">Niveau {state.village.level} </div>
           </div>
         </div>
         <div className="flex flex-row items-center">
-        <div className="text-lg font-semibold"> total : {state.playerStats.totalResource}  </div>
+        <div className="text-lg font-semibold"> total : {state.village.totalResource}  </div>
         <img src="/arcanum.png" width={40} height={40}/>
         <div className="text-lg font-semibold"> </div>
         </div>
 
         <div className="flex flex-row items-center">
-        <div className="text-lg font-semibold"> total : {state.playerStats.totalResource}  </div>
+        <div className="text-lg font-semibold"> total : {state.village.totalResource}  </div>
  
         <div className="text-lg font-semibold"> </div>
         </div>

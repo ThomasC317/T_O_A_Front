@@ -1,10 +1,11 @@
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, useTexture } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TextureLoader } from "three";
 import { VillageCard } from "../villageCard";
 import { createVillage, getVillage } from "@/services/villageService";
 import type { Village } from "@/models/village";
+import { usePlayer } from "@/context/PlayerContext";
 
 function Map() {    
     const mapTexture = useLoader(TextureLoader, "/map.png");
@@ -69,36 +70,7 @@ function Map() {
   
   export default function MainMap() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [village, setVillage] = useState<Village | null>(null);
-  
-    useEffect(() => {
-      const checkAndCreateVillage = async () => {
-        let existingVillage: Village | null = await getVillage(1);
-  
-        if (!existingVillage) {
-          const newVillage: Village = await createVillage({ 
-            name: 'New Village', 
-            level: 1, 
-            resourcePerSecond: 10, 
-            resource: 100, 
-            totalResource: 1000 
-          });
-          existingVillage = newVillage;
-        }
-  
-        setVillage(existingVillage);
-      };
-  
-      checkAndCreateVillage();
-    }, []);
-  
-    // Si village est encore null, tu peux afficher un message de chargement ou rien
-    useEffect(() => {
-      if (village) {
-        console.log("Village: " + village.name);
-      }
-    }, [village]);
-  
+  const { state } = usePlayer();
     const handleVillageClick = () => {
       setIsModalOpen(true);
     };
@@ -109,11 +81,7 @@ function Map() {
   
     return (
       <div style={{ margin: 0, padding: 0, overflow: 'hidden', width: '100vw', height: '100vh' }}>
-        {village ? (
-          <VillageCard village={village} />
-        ) : (
-          <p>Chargement du village...</p>
-        )}
+        <VillageCard />
   
         <Canvas 
           style={{ width: "100%", height: "100%" }} 

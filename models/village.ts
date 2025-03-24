@@ -17,6 +17,8 @@ export interface Village {
     totalResource: number;
     remainingSkillPoints: number;
     skills: Skill[];
+    xp: number;
+    requiredXpToLevelUp: number;
     apogee?: Apogee;
     villageServants: VillageServant[];
     villageFarmers: VillageFarmer[];

@@ -1,4 +1,5 @@
 import { Save } from "@/models/save";
+import { Village } from "./village";
 
 export interface User {
   id: number;
@@ -7,5 +8,7 @@ export interface User {
   password: string;
   createdAt: Date;
   updatedAt: Date;
+  village: Village[];
+  activeVillage: Village | null;
   saves: Save[];
 }
