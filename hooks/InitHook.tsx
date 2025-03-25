@@ -21,7 +21,7 @@ const { state, dispatch } = usePlayer();
   }, [dispatch]); 
 
   useEffect(() => {
-    console.log("updating village !!!! "+ state.village.name)
+    
   }, [state.village]);
 
 };

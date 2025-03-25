@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import VillageMap from "@/components/VillageMap/villageMap";
 import VillageModal from "@/components/VillageModal/villageModal";
-import Bank from "@/components/Bank/bank";
+// import Bank from "@/components/Bank/bank";
 import Shop from "@/components/Shop/shop";
 import ServantManagement from "@/components/servantManagement/servantManagement";
-import { StatUpgradeForm } from "@/components/Talents/statUpgrade";
+// import { StatUpgradeForm } from "@/components/Talents/statUpgrade";
 import ApogeeLevel from "@/components/Apogee/apogeeManagement";
 
 export default function City() {
@@ -50,10 +50,10 @@ export default function City() {
       <div style={{ flex: 1, padding: "20px" }}>
         {state === "villageMap" && <VillageMap />}
         {state === "villageModal" && <VillageModal />}
-        {state === "bank" && <Bank />}
+        {/* {state === "bank" && <Bank />} */}
         {state === "shop" && <Shop />}
         {state === "servantManagement" && <ServantManagement />}
-        {state === "skillManagement" && <StatUpgradeForm />}
+        {/* {state === "skillManagement" && <StatUpgradeForm />} */}
         {state === "apogeeManagement" && <ApogeeLevel />}
       </div>
     </div>
