@@ -1,0 +1,18 @@
+const API_URL = "http://localhost:3000/api";
+const VILLAGE_CONTROLLER_URL = "/villages";
+const VILLAGE_FARMER_CONTROLLER_URL = "/villagefarmers";
+const VILLAGE_APOGEE_CONTROLLER_URL = "/villageapogees";
+const VILLAGE_ITEM_CONTROLLER_URL = "/villageitems";
+const VILLAGE_SERVANT_CONTROLLER_URL = "/villageservants";
+const SAVE_CONTROLLER_URL = "/saves";
+const SKILL_CONTROLLER_URL = "/skills";
+const USER_CONTROLLER_URL = "/users";
+
+export const API_VILLAGE_URL = `${API_URL}${VILLAGE_CONTROLLER_URL}`;
+export const API_VILLAGE_FARMER_URL = `${API_URL}${VILLAGE_FARMER_CONTROLLER_URL}`;
+export const API_VILLAGE_APOGEE_URL = `${API_URL}${VILLAGE_APOGEE_CONTROLLER_URL}`;
+export const API_VILLAGE_ITEM_URL = `${API_URL}${VILLAGE_ITEM_CONTROLLER_URL}`;
+export const API_VILLAGE_SERVANT_URL = `${API_URL}${VILLAGE_SERVANT_CONTROLLER_URL}`;
+export const API_SAVE_URL = `${API_URL}${SAVE_CONTROLLER_URL}`;
+export const API_SKILL_URL = `${API_URL}${SKILL_CONTROLLER_URL}`;
+export const API_USER_URL = `${API_URL}${USER_CONTROLLER_URL}`;
