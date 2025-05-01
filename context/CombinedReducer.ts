@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import playerReducer from './VillageReducer';
-import farmerReducer  from './FarmerReducer';
+import farmerReducer, { FarmerStats }  from './FarmerReducer';
 import itemReducer, { ItemState } from './ItemReducer';
 import shopReducer, { ShopState } from './ShopReducer';
 import talentReducer, { TalentState } from './TalentReducer';
@@ -12,7 +12,7 @@ import userReducer from './UserReducer';
 
 export interface CombinedState {
   village: Village;
-  villageFarmers: VillageFarmer;
+  villageFarmers: FarmerStats;
   user:User;
   // gameItem: ItemState;
   // shopState:ShopState;

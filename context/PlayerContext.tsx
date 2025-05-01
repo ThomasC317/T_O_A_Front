@@ -21,15 +21,6 @@ interface PlayerContextType {
   const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
   const initialState: CombinedState = {
-    villageFarmers: {
-      id: 0,
-      totalResourceGenerated: 0,
-      isActive: false,
-      level: 0,
-      quality: 0,
-      nextUpgradeCost: 0,
-      resourcePerSecond: 0
-    },
     user: {
       activeVillage: {
         xp: 0,
@@ -71,6 +62,12 @@ interface PlayerContextType {
       villageItem: [],
       villageShops: [],
       requiredXpToLevelUp: 0
+    },
+    villageFarmers: {
+        farmers:[],
+        totalFarmers: 0,
+        totalResourcesGenerated: 0,
+        farmersMaxLevel : 20
     }
   };
 
@@ -97,7 +94,9 @@ export const usePlayer = () => {
   export const loadVillage = async (villageId: number, dispatch: React.Dispatch<any>) => {
     try {
       const data = await getVillage(villageId);
-      dispatch({ type: UserActionTypes.SET_VILLAGE, payload: data });
+      console.log("Village data:", data);
+      dispatch({ type: UserActionTypes.SET_VILLAGE, payload: data.village });
+      dispatch({ type: FarmerActionTypes.INIT_FARMERS, payload: data.village.villageFarmers})
     } catch (error) {
       console.error("Erreur lors du chargement du village :", error);
     }
@@ -130,27 +129,28 @@ export const usePlayer = () => {
       console.error("Erreur mise à jour ressource :", error);
     }
   };
-
-  // export const setResource = async(amount: number) => ({
-  //   type: PlayerActionTypes.UPDATE_RESOURCE,
-  //   payload: amount,
-  // });
   
-  
-  // export const setTotalResource = (total: number) => {
-
+  // export const SetPassiveResource = (resourcePerSecond: number) => {
+  //   return async () => {
+  //     await updateResourcePerSecond(resourcePerSecond)
+  //   };
   // };
   
-  export const SetPassiveResource = (resourcePerSecond: number) => {
-    return async () => {
-      await updateResourcePerSecond(resourcePerSecond)
-    };
-  };
   
-  
-  export const setFarmerIsActive = (id: number, isActive: boolean) => {
+  export const setFarmerIsActive = (farmer:Farmer, dispatch: React.Dispatch<any>) => {
     return async () => {
-      await setVillageFarmerIsActive(id,isActive)
+      const data = await setVillageFarmerIsActive(farmer.id,farmer.isActive)
+      if(data)
+        {
+          dispatch({
+            type: FarmerActionTypes.SET_FARMER_IS_ACTIVE,
+            payload: farmer.isActive,
+          });
+          dispatch({
+            type: VillageActionTypes.SET_PASSIVE_RESOURCE,
+            payload: farmer.resourcePerSecond,
+          });
+        }
     };
   };
   

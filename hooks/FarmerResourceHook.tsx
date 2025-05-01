@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Farmer, FarmerStats } from "@/context/FarmerReducer";
 import {
   usePlayer,
-  SetPassiveResource,
   setFarmerLevel,
   addFarmer,
   setResource,
@@ -241,24 +240,44 @@ const useSetFarmerLevel = () => {
 
   const setFarmerLevelHandler = useCallback(
     (farmer: Farmer) => {
-      if (
-        state.playerStats.resource >= farmer.nextUpgradeCost
-      ) {
-        dispatch(setFarmerLevel(farmer.id, 1));
-        // dispatch(
-        //   setFarmerResourcePerSecond(farmer.id, farmer.baseResourcePerSecond)
-        // );
-        // dispatch(setResource(-farmer.nextUpgradeCost));
-        // dispatch(setPlayerStats({ intelligence: farmer.baseResourcePerSecond }, "add"));
-        // let nextUpgradeCost = Math.round(
-        //   farmer.baseResourceForUpgrade *
-        //     Math.pow(farmer.resourceUpgradeFactor, farmer.level)
-        // );
-        // dispatch(setNextUpgradeCost(farmer.id, nextUpgradeCost));
-      }
+      // if (
+      //   state.playerStats.resource >= farmer.nextUpgradeCost
+      // ) {
+      //   dispatch(setFarmerLevel(farmer.id, 1));
+      //   // dispatch(
+      //   //   setFarmerResourcePerSecond(farmer.id, farmer.baseResourcePerSecond)
+      //   // );
+      //   // dispatch(setResource(-farmer.nextUpgradeCost));
+      //   // dispatch(setPlayerStats({ intelligence: farmer.baseResourcePerSecond }, "add"));
+      //   // let nextUpgradeCost = Math.round(
+      //   //   farmer.baseResourceForUpgrade *
+      //   //     Math.pow(farmer.resourceUpgradeFactor, farmer.level)
+      //   // );
+      //   // dispatch(setNextUpgradeCost(farmer.id, nextUpgradeCost));
+      // }
     },
-    [state.playerStats.resource, dispatch]
+    [dispatch]
   );
+  // const setFarmerLevelHandler = useCallback(
+  //   (farmer: Farmer) => {
+  //     if (
+  //       state.playerStats.resource >= farmer.nextUpgradeCost
+  //     ) {
+  //       dispatch(setFarmerLevel(farmer.id, 1));
+  //       // dispatch(
+  //       //   setFarmerResourcePerSecond(farmer.id, farmer.baseResourcePerSecond)
+  //       // );
+  //       // dispatch(setResource(-farmer.nextUpgradeCost));
+  //       // dispatch(setPlayerStats({ intelligence: farmer.baseResourcePerSecond }, "add"));
+  //       // let nextUpgradeCost = Math.round(
+  //       //   farmer.baseResourceForUpgrade *
+  //       //     Math.pow(farmer.resourceUpgradeFactor, farmer.level)
+  //       // );
+  //       // dispatch(setNextUpgradeCost(farmer.id, nextUpgradeCost));
+  //     }
+  //   },
+  //   [state.playerStats.resource, dispatch]
+  // );
   return setFarmerLevelHandler;
 };
 

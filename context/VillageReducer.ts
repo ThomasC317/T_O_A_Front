@@ -206,14 +206,12 @@ interface SetXpAction {
   ): Village => {
     switch (action.type) {
       case VillageActionTypes.SET_VILLAGE: 
-      console.log(action.payload)
         return {...state, ...action.payload}
       case VillageActionTypes.SET_XP:
         return { ...state, xp: state.xp + action.payload };
       case VillageActionTypes.SET_LEVEL:
         return { ...state, level: state.level + action.payload };
       case VillageActionTypes.UPDATE_RESOURCE:
-        console.log("resurce update !!" +  action.payload)
         return { ...state, resource: state.resource + action.payload, totalResource: state.totalResource + action.payload };
       case VillageActionTypes.SET_TOTAL_RESOURCE:
         return { ...state, totalResource: state.totalResource + action.payload };

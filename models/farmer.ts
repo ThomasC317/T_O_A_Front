@@ -6,5 +6,4 @@ export interface Farmer {
     description: string;
     baseResourcePerSecond: number;
     quality: number;
-    VillageFarmer?: VillageFarmer;
   }

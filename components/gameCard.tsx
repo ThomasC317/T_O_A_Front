@@ -22,6 +22,7 @@ export default function GameCard({
     return null; // or some fallback UI
   }
   const { state } = usePlayer();
+  console.log("farmer ?",item)
   return (
     <div
       className={`w-full max-w-sm p-6 transform transition-transform border-4 border-transparent bg-black p-6 menu-bar ${getItemCardBackgroundColor(
@@ -56,7 +57,7 @@ export default function GameCard({
               <button
                 className="px-4 py-2 text-white rounded-lg border border-secondary"
                 onClick={onPrimaryAction}
-                disabled={item.nextUpgradeCost > state.playerStats.resource}
+                disabled={item.nextUpgradeCost > state.village.resource}
               >
                 +
               </button>

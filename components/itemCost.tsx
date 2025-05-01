@@ -5,9 +5,9 @@ export function ItemCost({ value }) {
   const { state } = usePlayer();
   const [textColor, setTextColor] = useState("text-white");
   useEffect(() => {
-    if (state.playerStats.resource >= value) setTextColor("text-white");
+    if (state.village.resource >= value) setTextColor("text-white");
     else setTextColor("text-red-500");
-  }, [state.playerStats.resource]);
+  }, [state.village.resource]);
   return (
     <div className="flex items-center text-sm">
       <span className={textColor}>{value}</span>

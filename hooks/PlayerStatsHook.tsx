@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 import {
-  SetPassiveResource,
   usePlayer,
 } from "../context/PlayerContext"; // Replace with the actual path to your action creators
 

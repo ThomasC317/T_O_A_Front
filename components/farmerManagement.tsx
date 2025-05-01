@@ -15,13 +15,13 @@ const FarmersManagement = () => {
   const { state, dispatch } = usePlayer();
   const SetFarmerLevel = useSetFarmerLevel();
   const SetFarmerIsActive = useSetFarmerIsActive();
-  const farmers = state.farmerStats.farmers;
-  const [selectedFarmer, setSelectedFarmer] = useState(state.farmerStats.farmers[0]);
+  const farmers = state.villageFarmers.farmers;
+  const [selectedFarmer, setSelectedFarmer] = useState(state.villageFarmers.farmers[0]);
   const [isActivateButtonDisabled, setIsActivateButtonDisabled] = useState(false);
 
   const OnVillagerClick = (item) => {
-    const activeItemsCount = state.farmerStats.farmers.filter((item) => item.isActive).length;
-    if (!item.isActive && activeItemsCount >= state.farmerStats.totalFarmers) {
+    const activeItemsCount = state.villageFarmers.farmers.filter((item) => item.isActive).length;
+    if (!item.isActive && activeItemsCount >= state.villageFarmers.farmers.length) {
       setIsActivateButtonDisabled(true);
     } else {
       setIsActivateButtonDisabled(false);
@@ -29,14 +29,16 @@ const FarmersManagement = () => {
     setSelectedFarmer(item);
   };
 
+  console.log("selected farmer ?", selectedFarmer)
+
     useEffect(() => {
         if(selectedFarmer)
-            setSelectedFarmer(state.farmerStats.farmers.find((farmer) => farmer.id == selectedFarmer.id));
+            setSelectedFarmer(state.villageFarmers.farmers.find((farmer) => farmer.id == selectedFarmer.id));
         else
-            setSelectedFarmer(state.farmerStats.farmers[0]);
-    }, [state.farmerStats.farmers])
+            setSelectedFarmer(state.villageFarmers.farmers[0]);
+    }, [state.villageFarmers.farmers])
 
-  const maxFarmers = state.farmerStats.totalFarmers;
+  const maxFarmers = state.villageFarmers.farmers.length;
   const totalSlots = 8;
 
   return (
@@ -159,5 +161,5 @@ function GamepadIcon(props) {
       <line x1="18" x2="18.01" y1="11" y2="11" />
       <rect width="20" height="12" x="2" y="6" rx="2" />
     </svg>
-  );
+  ); 
 }

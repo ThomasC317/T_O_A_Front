@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Farmer, FarmerStats } from "@/context/FarmerReducer";
 import {
   usePlayer,
-  SetPassiveResource,
   setFarmerLevel,
   addFarmer,
   setResource,

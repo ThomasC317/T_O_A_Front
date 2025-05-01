@@ -1,5 +1,6 @@
 import { GameStats } from "@/utils/GameStats";
 import  {GameQualities} from "@/utils/GameQualities";
+import { VillageFarmer } from "@/models/villageFarmer";
 // Define action types
 export enum FarmerActionTypes {
     SET_FARMER_RESOURCE_PER_SECOND = "SET_FARMER_RESOURCE_PER_SECOND",
@@ -13,7 +14,8 @@ export enum FarmerActionTypes {
     SET_TOTAL_SERVANT_COUNT = "SET_TOTAL_SERVANT_COUNT",
     ADD_SERVANT = "ADD_SERVANT",
     RESET_FARMERS_AND_SERVANTS = "RESET_FARMERS_AND_SERVANTS",
-    SET_SERVANT_STATS_MULTIPLIER = "SET_SERVANT_STATS_MULTIPLIER"
+    SET_SERVANT_STATS_MULTIPLIER = "SET_SERVANT_STATS_MULTIPLIER",
+    INIT_FARMERS = "INIT_FARMERS"
   }
 
 export interface Farmer {
@@ -44,13 +46,18 @@ export interface Farmer {
   }
   
   export interface FarmerStats {
-    farmers: Farmer[];
-    servants: Servant[];
+    farmers: VillageFarmer[];
+    // servants: Servant[];
     totalFarmers: number;
-    totalServants : number;
+    // totalServants : number;
     totalResourcesGenerated: number;
     farmersMaxLevel : number; 
-    servantStatsMultiplier : number;
+    // servantStatsMultiplier : number;
+  }
+
+  interface InitFarmersAction {
+    type: FarmerActionTypes.INIT_FARMERS;
+    payload: VillageFarmer[];
   }
 
   interface SetResourcePerSecondAction {
@@ -143,7 +150,8 @@ export type FarmerAction =
 | SetTotalFarmersCountAction
 | SetTotalServantsCountAction
 | ResetFarmersAndServantsAction
-| SetServantStatsMultiplierAction;
+| SetServantStatsMultiplierAction
+| InitFarmersAction;
 
   // Define the initial state and the reducer
   const farmerReducer = (
@@ -151,6 +159,27 @@ export type FarmerAction =
     action: FarmerAction
   ): FarmerStats => {
     switch (action.type) {
+      case FarmerActionTypes.INIT_FARMERS:{
+        console.log("init farmers",action.payload)
+
+        const formattedFarmers: VillageFarmer[] = action.payload.map((rawFarmer: any) => ({
+          id: rawFarmer.id,
+          name: rawFarmer.farmer.name,
+          description: rawFarmer.farmer.description,
+          baseResourcePerSecond: rawFarmer.baseResourcePerSecond ?? 0,
+          farmerId: rawFarmer.farmerId ?? undefined,
+          totalResourceGenerated: rawFarmer.totalResourceGenerated ?? 0,
+          isActive: rawFarmer.isActive ?? false,
+          level: rawFarmer.level ?? 1,
+          quality: rawFarmer.quality ?? 1,
+          nextUpgradeCost: rawFarmer.nextUpgradeCost ?? 0,
+          resourcePerSecond: rawFarmer.resourcePerSecond ?? 0,
+          VillageFarmerVillageItem: rawFarmer.VillageFarmerVillageItem ?? undefined,
+          ItemStat: rawFarmer.ItemStat ?? undefined,
+        }));
+
+        return {...state, farmers:formattedFarmers}
+      }
       case FarmerActionTypes.SET_FARMER_RESOURCE_PER_SECOND: {
         const { id, resourcePerSecond } = action.payload;
         return {

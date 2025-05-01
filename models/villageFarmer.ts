@@ -5,9 +5,9 @@ import { VillageFarmerVillageItem } from "@/models/villageFarmervillageItem";
 
 export interface VillageFarmer {
     id: number;
-    village?: Village;
-    villageId?: number;
-    farmer?: Farmer;
+    name: string;
+    description: string;
+    baseResourcePerSecond: number;
     farmerId?: number;
     totalResourceGenerated: number;
     isActive: boolean;

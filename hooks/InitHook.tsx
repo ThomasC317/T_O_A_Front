@@ -8,7 +8,6 @@ const { state, dispatch } = usePlayer();
   useEffect(() => {
   
     const initializeGame = async () => {
-      console.log("init ????")
       try {
         const villageId = 1;
         await loadVillage(villageId, dispatch);

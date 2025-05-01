@@ -16,7 +16,7 @@ export enum UserActionTypes {
   const userReducer = (state: User, action: UserActions): User => {
     switch (action.type) {
         case UserActionTypes.SET_VILLAGE:
-            console.log(action.payload.name)
+            console.log("set village",action.payload)
           return {
              ...state, 
              activeVillage:{...action.payload} 
